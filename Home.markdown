@@ -53,9 +53,9 @@ User is able to:
 
 # Installation
 
-* [[yaas-server installation]]
-* [[yaas-web installation]]
-* [[Upgrading from yaas-web-0.3 to yaas-web-0.4]]
+* [[YaasServerInstallation]]
+* [[YaasWebInstallation]]
+* [[UpgradeNotes]]
 
 # Development
 
