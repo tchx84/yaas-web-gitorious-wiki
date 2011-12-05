@@ -6,7 +6,7 @@ This system intends to be a minimalist, easy-to [install, manage, use], standard
 
 ## Assumptions
 
-You should be using [http://dev.laptop.org/git/bios-crypto/ bios-crypto] for your activations generation.
+You should be using <a href="http://dev.laptop.org/git/bios-crypto/">bios-crypto</a> for your activations generation.
 
 ## Packages
 The system is composed of 2 packages:
@@ -50,6 +50,14 @@ User is able to:
 ### Developer keys
 * Each user could also create developer keys.
 * This option is set by the administrator on each user individually.
+
+# Installation
+
+* [[yaas-server installation]]
+* [[yaas-web installation]]
+* [[Upgrading from yaas-web-0.3 to yaas-web-0.4]]
+
+# Development
 
 # Installation - server
 
