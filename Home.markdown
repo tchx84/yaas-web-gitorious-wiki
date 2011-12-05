@@ -10,6 +10,7 @@ You should be using [http://dev.laptop.org/git/bios-crypto/ bios-crypto] for you
 
 ## Packages
 The system is composed of 2 packages:
+
 * **yaas-server** provides the activation generation service. It must run on the same machine where the bios-crypto packages are installed.
 * **yaas-web** provides a web application that acts as a proxy between users and all the activation generation processes.
 
@@ -80,6 +81,7 @@ Install bios-crypto (e.g. in the home directory of the user that will run yaas-s
     # make cli
 
 Place your private master keys developer keys and leases at
+
 * `bios-crypto/build/developer.public`
 * `bios-crypto/build/developer.private`
 * `bios-crypto/build/lease.public`
