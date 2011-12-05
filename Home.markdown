@@ -13,7 +13,7 @@ The system is composed of 2 packages:
 * **yaas-server** provides the activation generation service. It must run on the same machine where the bios-crypto packages are installed.
 * **yaas-web** provides a web application that acts as a proxy between users and all the activation generation processes.
 
-## Architectural justification ##
+## Architectural justification
 Even when its possible to have all the packages running on the same machine, it is important to provide a mechanism to isolate from the outer-world the critical information that comes along with the bios-crypto packages, such as the private keys.
 
 # Actors #
@@ -52,13 +52,13 @@ User is able to:
 
 # Installation - server #
 
-Create <tt>/etc/yum.repos.d/pyeduca.repo</tt> with the following contents:
+Create `/etc/yum.repos.d/yaas.repo` with the following contents:
 
-  [pyeduca-base]
-  name=Packages used by Paraguay Educa
-  baseurl=http://repo.paraguayeduca.org/yum/base
-  enabled=1
-  gpgcheck=0
+>[yaas]
+>name=Inventario
+>baseurl=http://dev.laptop.org/~dsd/inventario-repo
+>enabled=1
+>gpgcheck=0
 
 Install the package:
 
