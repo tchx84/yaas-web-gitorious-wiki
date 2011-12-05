@@ -54,84 +54,80 @@ User is able to:
 
 Create `/etc/yum.repos.d/yaas.repo` with the following contents:
 
-<pre>
-[yaas]
-name=Inventario
-baseurl=http://dev.laptop.org/~dsd/inventario-repo
-enabled=1
-gpgcheck=0
-</pre>
+    [yaas]
+    name=Inventario
+    baseurl=http://dev.laptop.org/~dsd/inventario-repo
+    enabled=1
+    gpgcheck=0
 
 Install the package:
 
-  yum install yaas-server
+    yum install yaas-server
 
 Generate a key pair for the SSL security:
 
-  openssl req -new -x509 -days 9999 -nodes -out pkey-cert.pem -keyout pkey-key.pem
+    openssl req -new -x509 -days 9999 -nodes -out pkey-cert.pem -keyout pkey-key.pem
 
 Put the keys somewhere safe, and change and restrict access to the user running the yaas-server, which has to match the user executing bios-crypto script:
 
-  chown OWNER pkey-*.pem
-  chmod go-rwx pkey-*.pem
+    chown OWNER pkey-*.pem
+    chmod go-rwx pkey-*.pem
 
 Install bios-crypto (e.g. in the home directory of the user that will run yaas-server)
- yum install git make gcc zlib-devel
- git clone git://dev.laptop.org/bios-crypto
- cd bios-crypto/build
- make cli
+    yum install git make gcc zlib-devel
+    git clone git://dev.laptop.org/bios-crypto
+    cd bios-crypto/build
+    make cli
 
 Place your private master keys developer keys and leases at
-* <tt>bios-crypto/build/developer.public</tt>
-* <tt>bios-crypto/build/developer.private</tt>
-* <tt>bios-crypto/build/lease.public</tt>
-* <tt>bios-crypto/build/lease.private</tt>
+* `bios-crypto/build/developer.public`
+* `bios-crypto/build/developer.private`
+* `bios-crypto/build/lease.public`
+* `bios-crypto/build/lease.private`
 
 Modify the yaas-server configuration file with your favorite text editor:
 
-  cp /opt/yaas-server/etc/yaas.config.example /opt/yaas-server/etc/yaas.config
-  vim /opt/yaas-server/etc/yaas.config
+    cp /opt/yaas-server/etc/yaas.config.example /opt/yaas-server/etc/yaas.config
+    vim /opt/yaas-server/etc/yaas.config
 
 Start the server:
 
- chkconfig yaas on
- service yaas-server start
+   chkconfig yaas on
+   service yaas-server start
 
 # Installation - web front end #
 
-Create <tt>/etc/yum.repos.d/pyeduca.repo</tt> with the following contents:
+Create `/etc/yum.repos.d/yaas.repo` with the following contents:
 
-  [pyeduca-base]
-  name=Packages used by Paraguay Educa
-  baseurl=http://repo.paraguayeduca.org/yum/base
-  enabled=1
-  gpgcheck=0
+    [yaas]
+    name=Inventario
+    baseurl=http://dev.laptop.org/~dsd/inventario-repo
+    enabled=1
+    gpgcheck=0
 
 The basic setup corresponds to a typical Ruby on Rails application.
 
 Install and enable mysql
- yum install mysql-server
- chkconfig mysqld on
- service mysqld start
+    yum install mysql-server
+    chkconfig mysqld on
+    service mysqld start
 
-The yaas-web installation expects the <tt>root</tt> mysql user to have no password (you can add one after), and requires mysqld to be running (as above). Install it now:
+The yaas-web installation expects the `root` mysql user to have no password (you can add one after), and requires mysqld to be running (as above). Install it now:
 
- yum install yaas-web
+    yum install yaas-web
 
 Install Passenger (this is not packaged in Fedora, so the installation is a bit long winded)
 
- yum install ruby-devel httpd-devel apr-devel gcc gcc-c++ make
- gem install passenger
- passenger-install-apache2-module
+    yum install ruby-devel httpd-devel apr-devel gcc gcc-c++ make
+    gem install passenger
+    passenger-install-apache2-module
 
-: Follow the instructions to complete the Passenger installation
-: <b>Be sure to read the output of the final command, as you must make another change to the apache config (read the instructions)</b>
+: Follow the instructions to complete the Passenger installation. **Be sure to read the output of the final command, as you must make another change to the apache config (read the instructions)**.
 
-Add the following to /etc/httpd/conf.d/passenger.conf
- PassengerDefaultUser apache
- PassengerDefaultGroup apache
-
-: It's not exactly clear why this is needed. According to the [http://www.modrails.com/documentation/Users%20guide%20Apache.html#PassengerUserSwitching passenger docs], PassengerUserSwitching (on by default) should cause yaas-web to run as the apache user (which is the owner of config/environment.rb). However, this seems to be broken at the time of writing: it runs as 'nobody' and is hence unable to write log files in /var/yaas-web/log. Adding these lines acts as a simple workaround.
+Add the following to `/etc/httpd/conf.d/passenger.conf`
+    PassengerDefaultUser apache
+    PassengerDefaultGroup apache
+> It's not exactly clear why this is needed. According to the [http://www.modrails.com/documentation/Users%20guide%20Apache.html#PassengerUserSwitching passenger docs], PassengerUserSwitching (on by default) should cause yaas-web to run as the apache user (which is the owner of config/environment.rb). However, this seems to be broken at the time of writing: it runs as 'nobody' and is hence unable to write log files in /var/yaas-web/log. Adding these lines acts as a simple workaround.
 
 If using SELinux, enable apache to run in permissive mode
 
