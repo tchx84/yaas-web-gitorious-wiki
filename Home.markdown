@@ -1,24 +1,19 @@
-## YAAS (Yet Another Activation System) ##
+# YAAS (Yet Another Activation System) #
 
-This system intends to be a minimalist, easy-to [install, manage, use], standards based alternative to [http://activation.laptop.org OLPC activation web interface]. Creating a safe environment for generating XO activations (leases and development keys) for local deployments.
+This system intends to be a minimalist, easy-to [install, manage, use], standards based alternative to <a href="http://activation.laptop.org">OLPC activation web interface</a>. Creating a safe environment for generating XO activations (leases and development keys) for local deployments.
 
+<img src="http://wiki.paraguayeduca.org/images/c/cc/Schema.png" />
 
-[[Imagen:schema.png|550px]]
-
-== Assumptions ==
+## Assumptions ##
 
 You should be using [http://dev.laptop.org/git/bios-crypto/ bios-crypto] for your activations generation.
 
-== Packages ==
+## Packages ##
 The system is composed of 2 packages:
+* **yaas-server** provides the activation generation service. It must run on the same machine where the bios-crypto packages are installed.
+* **yaas-web** provides a web application that acts as a proxy between users and all the activation generation processes.
 
-=== Yaas-server ===
-This package provides the activation generation service. It must run on the same machine where the bios-crypto packages are installed.
-
-=== Yaas-web ===
-This package provides a web application that acts as a proxy between users and all the activation generation processes.
-
-== Architectural justification ==
+## Architectural justification ##
 Even when its possible to have all the packages running on the same machine, it is important to provide a mechanism to isolate from the outer-world the critical information that comes along with the bios-crypto packages, such as the private keys.
 
 = Actors =
