@@ -16,7 +16,7 @@ The system is composed of 2 packages:
 ## Architectural justification
 Even when its possible to have all the packages running on the same machine, it is important to provide a mechanism to isolate from the outer-world the critical information that comes along with the bios-crypto packages, such as the private keys.
 
-# Actors #
+# Actors
 The system currently support 2 actors.
 
 * Administrator
@@ -54,11 +54,13 @@ User is able to:
 
 Create `/etc/yum.repos.d/yaas.repo` with the following contents:
 
->[yaas]
->name=Inventario
->baseurl=http://dev.laptop.org/~dsd/inventario-repo
->enabled=1
->gpgcheck=0
+<pre>
+[yaas]
+name=Inventario
+baseurl=http://dev.laptop.org/~dsd/inventario-repo
+enabled=1
+gpgcheck=0
+</pre>
 
 Install the package:
 
