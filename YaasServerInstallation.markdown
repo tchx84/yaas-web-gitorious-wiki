@@ -1,6 +1,6 @@
 Create `/etc/yum.repos.d/yaas.repo` with the following contents:
 
-    [yaas]
+    [inventario]
     name=Inventario
     baseurl=http://dev.laptop.org/~dsd/inventario-repo/f16
     enabled=1
