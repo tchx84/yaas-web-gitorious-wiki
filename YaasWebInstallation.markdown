@@ -32,13 +32,13 @@ Add the following to `/etc/httpd/conf.d/passenger.conf`
 
 If using SELinux, enable apache to run in permissive mode
 
- semanage permissive -a httpd_t
+    # semanage permissive -a httpd_t
 
 >This command enables apache to run in "permissive" mode, meaning that your whole apache installation ignores all policies normally enforced by SELinux. I tried, and ran out of patience before being able to produce a leaner way to get passenger and SELinux working together without error.
 
 Modify the yaas-web communication configuration file:
 
-    # vim /var/yaas-web/application/config/yaas.yml
+    # vim /var/yaas-web/config/yaas.yml
 
 Modify `/etc/httpd/conf/httpd.conf`: uncomment the line `NameVirtualHost *:80` to enable name-based virtual hosting 
 
@@ -46,4 +46,4 @@ Rename /etc/httpd/conf.d/yaas-web.conf.example (removing the .example extension)
 
 (Re)start apache
 
-    # /etc/init.d/httpd restart
+    # service httpd restart
