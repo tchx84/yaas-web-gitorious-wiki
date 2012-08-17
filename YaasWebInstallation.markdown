@@ -2,7 +2,7 @@ Create `/etc/yum.repos.d/yaas.repo` with the following contents:
 
     [inventario]
     name=Inventario
-    baseurl=http://dev.laptop.org/~dsd/inventario-repo/f16
+    baseurl=http://dev.laptop.org/~dsd/inventario-repo/f17
     enabled=1
     gpgcheck=0
 
