@@ -44,5 +44,5 @@ Modify the yaas-server configuration file with your favorite text editor:
 
 Start the server:
 
-    # chkconfig yaas on
+    # chkconfig yaas-server on
     # service yaas-server start
