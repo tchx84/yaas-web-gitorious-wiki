@@ -16,7 +16,7 @@ Generate a key pair for the SSL security:
 
 Put the keys somewhere safe, and change and restrict access to the user running the yaas-server, which has to match the user executing bios-crypto script:
 
-    # chown OWNER pkey-*.pem
+    # chown yaas pkey-*.pem
     # chmod go-rwx pkey-*.pem
 
 Install bios-crypto (e.g. in the home directory of the user that will run yaas-server)
@@ -31,6 +31,11 @@ Place your private master keys developer keys and leases at
 * `bios-crypto/build/developer.private`
 * `bios-crypto/build/lease.public`
 * `bios-crypto/build/lease.private`
+
+If you're wondering where to put bios-crypto and the keys you generated, `/home/yaas` might be a good idea.
+
+    # mkdir /home/yaas
+    # chown yaas: /home/yaas
 
 Modify the yaas-server configuration file with your favorite text editor:
 
