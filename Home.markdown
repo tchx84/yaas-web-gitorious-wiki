@@ -55,11 +55,7 @@ User is able to:
 
 Both packages are written in Ruby. Fedora Linux is the target platform; the installation documentation and packages are specifically targetted at Fedora. The software should also work fine on other distributions, but with non-Fedora setups you will be on your own in terms of installation, configuration and support.
 
-The software is developed against Ruby 1.9.x. yaas-web is developed against Rails 3.0 and is expected to work against Rails 3.1, but this has not yet been tested.
-
-**yaas-server** should work fine on Fedora 11 through Fedora 17.
-
-**yaas-web** is intended for use on Fedora 17.
+The software is developed against Ruby 1.9.3. yaas-web is developed against Rails 3.2. It is intended for use on Fedora 18.
 
 # Installation
 
