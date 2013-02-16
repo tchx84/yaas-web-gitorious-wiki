@@ -2,7 +2,7 @@ Create `/etc/yum.repos.d/yaas.repo` with the following contents:
 
     [inventario]
     name=Inventario
-    baseurl=http://dev.laptop.org/~dsd/inventario-repo/f17
+    baseurl=http://dev.laptop.org/~dsd/inventario-repo/f$releasever
     enabled=1
     gpgcheck=0
 
@@ -17,33 +17,26 @@ The yaas-web installation expects the `root` mysql user to have no password (you
 
     # yum install yaas-web
 
-Install Passenger (this is not packaged in Fedora, so the installation is a bit long winded)
+Install Passenger:
 
-    # yum install ruby-devel httpd-devel apr-devel gcc gcc-c++ make
-    # gem install passenger
-    # passenger-install-apache2-module
-
-> Follow the instructions to complete the Passenger installation. **Be sure to read the output of the final command, as you must make another change to the apache config (read the instructions)**.
-
-Add the following to `/etc/httpd/conf.d/passenger.conf`
-    PassengerDefaultUser apache
-    PassengerDefaultGroup apache
-> It's not exactly clear why this is needed. According to the <a href="http://www.modrails.com/documentation/Users%20guide%20Apache.html#PassengerUserSwitching">passenger docs</a>, PassengerUserSwitching (on by default) should cause yaas-web to run as the apache user (which is the owner of config/environment.rb). However, this seems to be broken at the time of writing: it runs as 'nobody' and is hence unable to write log files in /var/yaas-web/log. Adding these lines acts as a simple workaround.
+    # yum install mod_passenger
 
 If using SELinux, enable apache to run in permissive mode
 
+    # yum install selinux-policy-devel policycoreutils-python
     # semanage permissive -a httpd_t
+    # semanage permissive -a passenger_t
 
 >This command enables apache to run in "permissive" mode, meaning that your whole apache installation ignores all policies normally enforced by SELinux. I tried, and ran out of patience before being able to produce a leaner way to get passenger and SELinux working together without error.
+
+Copy the inventario apache config into place, and customise the file to change the ServerName to one that is appropriate for the system
+    # cp /usr/share/doc/inventario-*/yaas-web.conf /etc/httpd/conf.d
+    # $EDITOR /etc/httpd/conf.d/yaas-web.conf
 
 Modify the yaas-web communication configuration file:
 
     # vim /var/yaas-web/config/yaas.yml
 
-Modify `/etc/httpd/conf/httpd.conf`: uncomment the line `NameVirtualHost *:80` to enable name-based virtual hosting 
-
-Rename /etc/httpd/conf.d/yaas-web.conf.example (removing the .example extension) and customise file to change the ServerName to one that is appropriate for the system.
-
-(Re)start apache
+Finally, (re)start apache
 
     # service httpd restart
