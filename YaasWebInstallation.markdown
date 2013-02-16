@@ -1,4 +1,4 @@
-Create `/etc/yum.repos.d/yaas.repo` with the following contents:
+Create `/etc/yum.repos.d/inventario.repo` with the following contents:
 
     [inventario]
     name=Inventario
