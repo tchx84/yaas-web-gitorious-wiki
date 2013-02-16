@@ -30,7 +30,7 @@ If using SELinux, enable apache to run in permissive mode
 >This command enables apache to run in "permissive" mode, meaning that your whole apache installation ignores all policies normally enforced by SELinux. I tried, and ran out of patience before being able to produce a leaner way to get passenger and SELinux working together without error.
 
 Copy the inventario apache config into place, and customise the file to change the ServerName to one that is appropriate for the system
-    # cp /usr/share/doc/inventario-*/yaas-web.conf /etc/httpd/conf.d
+    # cp /usr/share/doc/yaas-web-*/yaas-web.conf /etc/httpd/conf.d
     # $EDITOR /etc/httpd/conf.d/yaas-web.conf
 
 Modify the yaas-web communication configuration file:
