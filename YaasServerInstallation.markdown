@@ -2,7 +2,7 @@ Create `/etc/yum.repos.d/yaas.repo` with the following contents:
 
     [inventario]
     name=Inventario
-    baseurl=http://dev.laptop.org/~dsd/inventario-repo/f17
+    baseurl=http://dev.laptop.org/~dsd/inventario-repo/f18/
     enabled=1
     gpgcheck=0
 
@@ -19,7 +19,7 @@ Put the keys somewhere safe, and change and restrict access to the user running 
     # chown yaas pkey-*.pem
     # chmod go-rwx pkey-*.pem
 
-Install bios-crypto (e.g. in the home directory of the user that will run yaas-server)
+Install bios-crypto (e.g. in the home directory of the user that will run yaas-server). Make sure you have .i686 packages.
     # yum install git make gcc zlib-devel
     # git clone git://dev.laptop.org/bios-crypto
     # cd bios-crypto/build
