@@ -20,7 +20,7 @@ Put the keys somewhere safe, and change and restrict access to the user running 
     # chmod go-rwx pkey-*.pem
 
 Install bios-crypto (e.g. in the home directory of the user that will run yaas-server). Make sure you have .i686 packages.
-    # yum install git make gcc zlib-devel libgcc
+    # yum install git make gcc zlib-devel libgcc glibc-devel
     # git clone git://dev.laptop.org/bios-crypto
     # cd bios-crypto/build
     # make cli
