@@ -12,6 +12,7 @@ When upgrading from v0.4 to v0.5 (e.g. updating to Ruby-1.9), we had to make som
 
     rake utf8_migration:run
 
+In case you have to export/import your DB,  <a href="http://www.garethsprice.com/blog/2011/fix-mysql-latin1-utf-character-encoding/">this</a> article can help you avoid encoding problems.
 
 # Upgrading v0.3 to v0.4
 
